@@ -3,14 +3,14 @@ Sales Prediction and Model for Predicting sales of a major store chain Rossmann
 
 Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied.
 
-//PROBLEM DEFINITION:
+#PROBLEM DEFINITION:
 The Rossmann store dataset consists of data about stores with respect to their features. We need to explore and analyze the data to discover key factors responsible for sales and come up with a supervised model that can predict the data for the next six weeks.
 Data:
 You are provided with historical sales data for 1,115 Rossmann stores. The task is to forecast the "Sales" column for the test set. Note that some stores in the dataset were temporarily closed for refurbishment.
 Rossmann Stores Data.csv - historical data including Sales
 store.csv - supplemental information about the stores!
 
-Features:
+#Features:
 Store - a unique Id for each store
 Sales - the turnover for any given day (this is what you are predicting)
 Customers - the number of customers on a given day
@@ -26,7 +26,7 @@ Promo2 - Promo2 is a continuing and consecutive promotion for some stores: 0 = s
 Promo2Since[Year/Week] - describes the year and calendar week when the store started participating in Promo2
 PromoInterval - describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store
 
-Basic information of dataset on analysing:
+#Basic information of dataset on analysing:
 There are two data sets rossmann stores data and store data.
 In rossmann stores data : There are 7 numerical data and 2 object data
 In store data: There are 7 numerical data and 3 object data
@@ -39,7 +39,7 @@ we added data to CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpen
 From the data set we can observe that date was in the yyyy-mm-dd format , we need to split the data with respect to day, month, quarter and year separate 
 And from above dataset we replace few features with respect to numerical and converted object type to numerical type
 
-\\basic EDA:\\
+#basic EDA:
  Total no of days = 1017209 
  Number of shops/days OPEN = 844392 
  Number of shops/days CLOSED = 17281
@@ -50,14 +50,20 @@ And from above dataset we replace few features with respect to numerical and con
  minimum sales of stores: 1 
  total sales of stores: 568039744
  
- Exploratory data analysis:
+ ![image](https://user-images.githubusercontent.com/104783155/200029368-c28761fa-d3aa-4980-b4e9-dd04486051df.png)
+From the data above, we can observe that sales are high in December (12)
+From the data above, we can observe that sales are high in the initial and last days of the month.
+
+
+ 
+ #Exploratory data analysis:
  From the dataset above, we can describe a few relationships between Rossmann sales of stores with different perspectives and scenarios.
  The sales at Rossmann are directly proportional to the distance between the other stores.
  Rossmann's sales are not directly proportional to promo or promo2, but they still provide us with a 10–30% increase in sales.
 
 
 
-SUPERVISED MODEL
+##SUPERVISED MODEL
 
 Steps to create a model
 select dependent and independent features for model
@@ -67,7 +73,7 @@ split the dataset into training data and test data with respect to (80:20)
 Transform the data within range of 0-1 so that we can increase the model bit effiency, for this model we use min max scalar for transforming the dataset
 
 
-Linear regression is an algorithm used to predict, or visualize, a relationship between two different features/variables
+# Linear regression is an algorithm used to predict, or visualize, a relationship between two different features/variables
 importing the linear regression from sklearn.metrics and 
 executing model with respect to training and test data and calculating MSE(mean square error) for performance and R Square for model efficiency
 Train performance: 1406.9155109794283 
@@ -77,7 +83,7 @@ R-square for test: 0.8672303384554428
 ![image](https://user-images.githubusercontent.com/104783155/200027709-644967c6-b8b8-4646-8096-8c6c4377f627.png)
 
 
-Random Forest is a Supervised learning algorithm that is based on the ensemble learning method and many Decision Trees. Random Forest is a Bagging technique, so all calculations are run in parallel and there is no interaction between the Decision Trees when building them
+# Random Forest is a Supervised learning algorithm that is based on the ensemble learning method and many Decision Trees. Random Forest is a Bagging technique, so all calculations are run in parallel and there is no interaction between the Decision Trees when building them
 importing the RandomForestRegressor from sklearn.metrics and 
 executing model with respect to training and test data and calculating MSE(mean square error) for performance and R Square for model efficiency
 Train performance: 172.47376478810307 
