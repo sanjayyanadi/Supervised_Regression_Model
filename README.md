@@ -7,19 +7,48 @@ Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Ros
 The Rossmann store dataset consists of data about stores with respect to their features. We need to explore and analyze the data to discover key factors responsible for sales and come up with a supervised model that can predict the data for the next six weeks.
 Data:
 You are provided with historical sales data for 1,115 Rossmann stores. The task is to forecast the "Sales" column for the test set. Note that some stores in the dataset were temporarily closed for refurbishment.
-Rossmann Stores Data.csv - historical data including Sales
+Rossmann Stores Data.csv - historical data including Sales
 store.csv - supplemental information about the stores!
 
-Features:Store - a unique Id for each storeSales - the turnover for any given day (this is what you are predicting)Customers - the number of customers on a given dayOpen - an indicator for whether the store was open: 0 = closed, 1 = openStateHoliday - indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = NoneSchoolHoliday - indicates if the (Store, Date) was affected by the closure of public schoolsStoreType - differentiates between 4 different store models: a, b, c, dAssortment - describes an assortment level: a = basic, b = extra, c = extendedCompetitionDistance - distance in meters to the nearest competitor storeCompetitionOpenSince[Month/Year] - gives the approximate year and month of the time the nearest competitor was openedPromo - indicates whether a store is running a promo on that dayPromo2 - Promo2 is a continuing and consecutive promotion for some stores: 0 = store is not participating, 1 = store is participatingPromo2Since[Year/Week] - describes the year and calendar week when the store started participating in Promo2PromoInterval - describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store
+Features:
+Store - a unique Id for each store
+Sales - the turnover for any given day (this is what you are predicting)
+Customers - the number of customers on a given day
+Open - an indicator for whether the store was open: 0 = closed, 1 = open
+StateHoliday - indicates a state holiday. Normally all stores, with few exceptions, are closed on state holidays. Note that all schools are closed on public holidays and weekends. a = public holiday, b = Easter holiday, c = Christmas, 0 = None
+SchoolHoliday - indicates if the (Store, Date) was affected by the closure of public schools
+StoreType - differentiates between 4 different store models: a, b, c, d
+Assortment - describes an assortment level: a = basic, b = extra, c = extended
+CompetitionDistance - distance in meters to the nearest competitor store
+CompetitionOpenSince[Month/Year] - gives the approximate year and month of the time the nearest competitor was opened
+Promo - indicates whether a store is running a promo on that day
+Promo2 - Promo2 is a continuing and consecutive promotion for some stores: 0 = store is not participating, 1 = store is participating
+Promo2Since[Year/Week] - describes the year and calendar week when the store started participating in Promo2
+PromoInterval - describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. E.g. "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store
 
 Basic information of dataset on analysing:
-There are two data sets rossmann stores data and store data.In rossmann stores data :There are 7 numerical data and 2 object dataIn store data:There are 7 numerical data and 3 object dataTo make sense we concatinate/merged the data with respect to store features in both the dataset now we have 13 numerical data and 5 object data![image](https://user-images.githubusercontent.com/104783155/200026332-79a380c8-4c8c-4a7e-ba13-931ceb2f2658.png)
+There are two data sets rossmann stores data and store data.
+In rossmann stores data : There are 7 numerical data and 2 object data
+In store data: There are 7 numerical data and 3 object data
+To make sense we concatinate/merged the data with respect to store features in both the dataset 
+now we have 13 numerical data and 5 object data
 
-wrangling of data :from the data we can see the null values in six features such as CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear, Promo2SinceWeek,  Promo2SinceYear, and PromoIntervalwe added data to CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear based on median&mode since this kind of data never changes and the rest empty data filled with null value ![image](https://user-images.githubusercontent.com/104783155/200026357-33596195-b54d-4f8b-8c8a-b9a16766f1e8.png)
+wrangling of data : from the data we can see the null values in six features such as CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear, Promo2SinceWeek,  Promo2SinceYear, and PromoInterval
+we added data to CompetitionDistance, CompetitionOpenSinceMonth, CompetitionOpenSinceYear based on median&mode since this kind of data never changes and the rest empty data filled with null value 
 
-From the data set we can observe that date was in the yyyy-mm-dd format , we need to split the data with respect to day, month, quarter and year separateAnd from above dataset we replace few features with respect to numerical and converted object type to numerical type ![image](https://user-images.githubusercontent.com/104783155/200026389-849d0e39-6b76-443b-8f01-991e339b2a43.png)
+From the data set we can observe that date was in the yyyy-mm-dd format , we need to split the data with respect to day, month, quarter and year separate 
+And from above dataset we replace few features with respect to numerical and converted object type to numerical type
 
-EDA:Total days = 1017209 Number of shops/days OPEN = 844392 Number of shops/days CLOSED = 17281sales with respect to day of week: Day 5 145845, Day 4 145845, Day 3 145665, Day 2 145664, Day 1 144730,        Day 7 144730, Day 6 144730 distinct number of stores: 1115 maximum sales of stores: 1115 average sales of stores: 558.4297268309659 minimum sales of stores: 1 total sales of stores: 568039744
+\\basic EDA:\\
+ Total no of days = 1017209 
+ Number of shops/days OPEN = 844392 
+ Number of shops/days CLOSED = 17281
+ sales with respect to day of week: Day 5 145845, Day 4 145845, Day 3 145665, Day 2 145664, Day 1 144730, Day 7 144730, Day 6 144730
+ distinct number of stores: 1115 
+ maximum sales of stores: 1115 
+ average sales of stores: 558.4297268309659 
+ minimum sales of stores: 1 
+ total sales of stores: 568039744
  
  Exploratory data analysis:
  From the dataset above, we can describe a few relationships between Rossmann sales of stores with different perspectives and scenarios.
